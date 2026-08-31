@@ -1,0 +1,3123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>@gimgingi</title>
+
+    <style>
+
+        @import url(
+            'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap'
+        );
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+
+            font-family:
+                'Noto Sans KR',
+                'Noto Sans JP',
+                sans-serif;
+
+            color: #111;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+
+            margin: 0 auto;
+
+            padding:
+                15px
+                20px
+                100px;
+
+            background: #f4f4f4;
+        }
+
+        /* HEADER */
+
+        .header {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+        .language-box {
+            display: flex;
+            align-items: center;
+
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        .lang-select {
+            margin-left: 6px;
+            padding: 3px 8px;
+
+            border: 1px solid #111;
+
+            background: transparent;
+            color: #111;
+
+            font-size: 11px;
+        }
+
+        .logo {
+            width: 32px;
+            height: auto;
+
+            cursor: pointer;
+        }
+
+        /* TAB */
+
+        .tab-menu {
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+
+            width: 100%;
+
+            display: flex;
+            gap: 6px;
+
+            margin-top: 15px;
+            margin-bottom: 35px;
+
+            padding: 8px 0;
+
+            background: #f4f4f4;
+        }
+
+        .tab-button {
+            flex: 1;
+
+            min-width: 0;
+            min-height: 38px;
+
+            padding: 7px 5px;
+
+            border: 1px solid #111;
+            border-radius: 999px;
+
+            background: transparent;
+            color: #777;
+
+            font-size: 9px;
+            line-height: 1.25;
+            font-weight: 500;
+
+            cursor: pointer;
+
+            word-break: keep-all;
+        }
+
+        .tab-button.active {
+            background: #111;
+            color: #fff;
+
+            font-weight: 700;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* WELCOME */
+
+        .welcome-container {
+            width: 100%;
+        }
+
+        .welcome-title {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .main-image {
+            display: block;
+
+            width: 95%;
+            max-width: 340px;
+
+            margin:
+                15px
+                auto
+                30px;
+        }
+
+        .text-content {
+            text-align: center;
+
+            font-size: 13px;
+            line-height: 1.8;
+            font-weight: 300;
+
+            word-break: keep-all;
+        }
+
+        .text-content p {
+            margin: 22px 0;
+        }
+
+        #t1 {
+            margin-bottom: 30px;
+
+            font-size: 26px;
+            font-weight: 900;
+
+            line-height: 1.3;
+            letter-spacing: -1px;
+        }
+
+        /* COMMON */
+
+        .section-title {
+            margin: 0 0 10px;
+
+            font-size: 26px;
+            font-weight: 900;
+
+            line-height: 1.3;
+            letter-spacing: -1px;
+        }
+
+        .section-subtext {
+            margin:
+                0
+                0
+                30px;
+
+            font-size: 11px;
+            line-height: 1.7;
+
+            font-weight: 300;
+
+            opacity: .65;
+        }
+
+        .small-title {
+            margin:
+                45px
+                0
+                18px;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .small-description {
+            margin:
+                -8px
+                0
+                18px;
+
+            font-size: 10px;
+            line-height: 1.7;
+
+            font-weight: 300;
+
+            opacity: .6;
+        }
+
+        /* NOTICE */
+
+        .notice-list {
+            border-top: 1px solid #111;
+        }
+
+        .notice-section {
+            padding: 24px 0;
+
+            border-bottom: 1px solid #ccc;
+        }
+
+        .notice-section h3 {
+            margin: 0 0 10px;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .notice-section p {
+            margin: 0;
+
+            font-size: 11px;
+            line-height: 1.9;
+            font-weight: 300;
+
+            word-break: keep-all;
+        }
+
+        /* SLIDER */
+
+        .estimate-card,
+        .booking-size-card {
+            margin-top: 20px;
+
+            padding:
+                35px
+                22px;
+
+            border: 1px solid #111;
+        }
+
+        .estimate-label {
+            margin-bottom: 8px;
+
+            font-size: 9px;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+
+            opacity: .5;
+        }
+
+        .size-display {
+            margin-bottom: 30px;
+
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        .size-display .unit {
+            font-size: 16px;
+        }
+
+        .size-slider {
+            width: 100%;
+
+            appearance: none;
+            -webkit-appearance: none;
+
+            height: 2px;
+
+            border-radius: 999px;
+
+            background: #111;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+        .size-slider::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+
+            width: 22px;
+            height: 22px;
+
+            border: 1px solid #111;
+            border-radius: 50%;
+
+            background: #f4f4f4;
+
+            cursor: pointer;
+        }
+
+        .size-slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+
+            border: 1px solid #111;
+            border-radius: 50%;
+
+            background: #f4f4f4;
+
+            cursor: pointer;
+        }
+
+        .slider-range {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 10px;
+
+            font-size: 9px;
+
+            opacity: .5;
+        }
+
+        /* PRICE */
+
+        .price-result {
+            margin-top: 35px;
+            padding-top: 25px;
+
+            border-top: 1px solid #ccc;
+        }
+
+        .price-value {
+            margin: 5px 0 0;
+
+            font-size: 31px;
+            font-weight: 900;
+        }
+
+        .price-note {
+            margin-top: 10px;
+
+            font-size: 10px;
+            line-height: 1.7;
+
+            opacity: .6;
+        }
+
+        .price-warning {
+            margin-top: 20px;
+
+            font-size: 10px;
+            line-height: 1.7;
+            font-weight: 300;
+
+            opacity: .6;
+        }
+
+        /* FORM */
+
+        .form-section {
+            border-top: 1px solid #111;
+        }
+
+        .form-group {
+            padding: 20px 0;
+
+            border-bottom: 1px solid #ccc;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 4px 0;
+
+            border: 0;
+
+            background: transparent;
+            color: #111;
+
+            font-size: 13px;
+
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 95px;
+
+            resize: vertical;
+
+            line-height: 1.7;
+        }
+
+        /* GENDER */
+
+        .gender-group {
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .gender-option {
+            flex: 1;
+        }
+
+        .gender-option input {
+            display: none;
+        }
+
+        .gender-option span {
+            display: block;
+
+            padding: 10px;
+
+            border: 1px solid #bbb;
+            border-radius: 999px;
+
+            text-align: center;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+        .gender-option input:checked + span {
+            background: #111;
+            color: #fff;
+
+            border-color: #111;
+        }
+
+        /* CALENDAR */
+
+        .calendar-section {
+            margin-top: 20px;
+        }
+
+        .selected-dates {
+            margin-bottom: 20px;
+
+            padding: 15px;
+
+            border: 1px solid #ccc;
+
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        .selected-dates strong {
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 11px;
+        }
+
+        .calendar {
+            padding: 18px 0;
+
+            border-top: 1px solid #aaa;
+            border-bottom: 1px solid #aaa;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .calendar-arrow {
+            width: 36px;
+            height: 36px;
+
+            border: 0;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 17px;
+        }
+
+        .calendar-days,
+        .calendar-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(7, 1fr);
+
+            text-align: center;
+        }
+
+        .calendar-days {
+            margin-bottom: 5px;
+
+            font-size: 9px;
+
+            opacity: .45;
+        }
+
+        .calendar-day {
+            position: relative;
+
+            aspect-ratio: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 11px;
+        }
+
+        .calendar-day.available {
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+        .calendar-day.available::after {
+            content: "";
+
+            position: absolute;
+
+            width: 28px;
+            height: 28px;
+
+            border: 1px solid #111;
+            border-radius: 50%;
+        }
+
+        .calendar-day.selected::after {
+            background: #111;
+        }
+
+        .calendar-day.selected span {
+            color: #fff;
+        }
+
+        .calendar-day span {
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .calendar-day.closed {
+            opacity: .15;
+        }
+
+        /* HEALTH */
+
+        .health-info {
+            margin-bottom: 12px;
+
+            font-size: 10px;
+            line-height: 1.8;
+
+            opacity: .65;
+        }
+
+        /* BUTTON */
+
+        .main-button {
+            width: 100%;
+
+            margin-top: 35px;
+
+            padding: 17px;
+
+            border: 1px solid #111;
+
+            background: #111;
+            color: #fff;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .secondary-button {
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 15px;
+
+            border: 1px solid #111;
+
+            background: transparent;
+            color: #111;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .kakao-button {
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 15px;
+
+            border: 1px solid #111;
+
+            background: #111;
+            color: #fff;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        /* RESULT */
+
+        .booking-result {
+            display: none;
+
+            margin-top: 45px;
+
+            padding-top: 30px;
+
+            border-top: 1px solid #111;
+        }
+
+        .booking-result h3 {
+            margin:
+                0
+                0
+                8px;
+
+            font-size: 18px;
+        }
+
+        .result-warning {
+            margin:
+                0
+                0
+                15px;
+
+            color: #c70000;
+
+            font-size: 10px;
+            line-height: 1.7;
+
+            font-weight: 500;
+
+            word-break: keep-all;
+        }
+
+        #bookingResultText {
+            width: 100%;
+            min-height: 430px;
+
+            margin: 15px 0;
+
+            padding: 15px;
+
+            border: 1px solid #bbb;
+
+            background: transparent;
+
+            font-size: 11px;
+            line-height: 1.8;
+
+            resize: none;
+        }
+
+        @media(max-width: 380px) {
+
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .tab-menu {
+                gap: 4px;
+            }
+
+            .tab-button {
+                min-height: 36px;
+
+                padding: 6px 3px;
+
+                font-size: 8px;
+            }
+
+            .section-title,
+            #t1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="language-box">
+
+            Language
+
+            <select
+                id="langSelect"
+                class="lang-select"
+                onchange="changeLanguage(this.value)"
+            >
+
+                <option value="ko">
+                    한국어
+                </option>
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="ja">
+                    日本語
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <img
+            src="logo.png"
+            class="logo"
+            alt="ggg logo"
+            onclick="goHome()"
+        >
+
+    </header>
+
+
+
+    <!-- MENU -->
+
+    <nav class="tab-menu">
+
+        <button
+            id="tabWelcome"
+            class="tab-button active"
+            onclick="openTab('welcome', this)"
+        >
+            @gimgingi
+        </button>
+
+        <button
+            id="tabNotice"
+            class="tab-button"
+            onclick="openTab('notice', this)"
+        >
+            필독 사항
+        </button>
+
+        <button
+            id="tabEstimate"
+            class="tab-button"
+            onclick="openTab('estimate', this)"
+        >
+            타투 가격
+        </button>
+
+        <button
+            id="tabBooking"
+            class="tab-button"
+            onclick="openTab('booking', this)"
+        >
+            예약 양식
+        </button>
+
+    </nav>
+
+
+
+    <!-- WELCOME -->
+
+    <section
+        id="welcome"
+        class="tab-content active"
+    >
+
+        <div class="welcome-container">
+
+            <img
+                src="welcome.png"
+                class="welcome-title"
+                alt="Welcome"
+            >
+
+        </div>
+
+
+        <img
+            src="rabbit.png"
+            class="main-image"
+            alt="Rabbit"
+        >
+
+
+        <div class="text-content">
+
+            <p id="t1">
+                환영합니다. 수집가님!
+            </p>
+
+            <p id="t2">
+                이곳에는 저마다의 이야기와 의미를 품고 있는 표본들이 있습니다.<br>
+                부디 천천히 둘러보세요.
+            </p>
+
+            <p id="t3">
+                마음에 드는 표본을 발견하신다면,<br>
+                그 표본의 새로운 주인이 되어주시길 바라요.
+            </p>
+
+            <p id="t4">
+                다만 한 가지.<br>
+                수집가님이 선택한다고 생각할 수도 있지만,<br>
+                가끔은 표본이 먼저 수집가를 선택하기도 해요.
+            </p>
+
+            <p id="t5">
+                그럼 즐거운 수집 되시길.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- NOTICE -->
+
+    <section
+        id="notice"
+        class="tab-content"
+    >
+
+        <h2
+            id="noticeTitle"
+            class="section-title"
+        >
+            필독 사항
+        </h2>
+
+
+        <div class="notice-list">
+
+
+            <div class="notice-section">
+
+                <h3 id="notice1Title">
+                    예약금
+                </h3>
+
+                <p id="notice1Text">
+                    예약금은 50,000원 입니다.<br>
+                    예약금은 최종 시술 금액에 포함됩니다.<br>
+                    예약 취소나 노쇼(No-show) 시 예약금은 환불되지 않습니다.
+                </p>
+
+            </div>
+
+
+            <div class="notice-section">
+
+                <h3 id="notice2Title">
+                    예약 변경
+                </h3>
+
+                <p id="notice2Text">
+                    일정 변경은 예약일 2일 전까지 가능합니다.<br>
+                    재변경 시 추가 예약금이 발생할 수 있습니다.
+                </p>
+
+            </div>
+
+
+            <div class="notice-section">
+
+                <h3 id="notice3Title">
+                    지각
+                </h3>
+
+                <p id="notice3Text">
+                    30분 이상 지각 시 작업이 취소될 수 있으며,<br>
+                    예약금은 반환되지 않습니다.
+                </p>
+
+            </div>
+
+
+            <div class="notice-section">
+
+                <h3 id="notice4Title">
+                    미성년자
+                </h3>
+
+                <p id="notice4Text">
+                    미성년자 작업은 진행하지 않습니다.<br>
+                    방문 시 신분증 확인을 요청드릴 수 있습니다.
+                </p>
+
+            </div>
+
+
+            <div class="notice-section">
+
+                <h3 id="notice5Title">
+                    작업 시간
+                </h3>
+
+                <p id="notice5Text">
+                    핸드포크 특성상 작업 시간이 깁니다.
+                    이후 일정을 비워두시거나 여유롭게 잡아주세요.
+                </p>
+
+            </div>
+
+
+            <div class="notice-section">
+
+                <h3 id="notice6Title">
+                    디자인
+                </h3>
+
+                <p id="notice6Text">
+                    다른 타투이스트의 작업을 그대로 복제하지 않습니다.<br>
+                    도안의 저작권은 타투이스트에게 있으며,
+                    타투 외 작업에 사용될 수 있습니다.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PRICE -->
+
+    <section
+        id="estimate"
+        class="tab-content"
+    >
+
+        <h2
+            id="estimateTitle"
+            class="section-title"
+        >
+            타투 가격 견적
+        </h2>
+
+
+        <div class="estimate-card">
+
+            <div class="estimate-label">
+                SIZE
+            </div>
+
+
+            <div class="size-display">
+
+                <span id="estimateSizeValue">
+                    5
+                </span>
+
+                <span class="unit">
+                    CM
+                </span>
+
+            </div>
+
+
+            <input
+                id="estimateSlider"
+                class="size-slider"
+                type="range"
+
+                min="1"
+                max="20"
+                step="1"
+
+                value="5"
+
+                oninput="calculateEstimate()"
+            >
+
+
+            <div class="slider-range">
+
+                <span>
+                    1 CM
+                </span>
+
+                <span>
+                    20 CM
+                </span>
+
+            </div>
+
+
+            <div class="price-result">
+
+                <div class="estimate-label">
+                    ESTIMATED PRICE
+                </div>
+
+
+                <p
+                    id="estimatePrice"
+                    class="price-value"
+                >
+                    ₩75,000
+                </p>
+
+
+                <p
+                    id="estimatePriceNote"
+                    class="price-note"
+                >
+                    1~3cm 기본 50,000원 / 4cm부터 1cm당 15,000원
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <p
+            id="priceWarning"
+            class="price-warning"
+        >
+            실제 가격은 디자인의 디테일, 컬러, 작업 부위 등에 따라 달라질 수 있습니다.
+            정확한 금액은 예약 상담 후 안내드립니다.
+        </p>
+
+    </section>
+
+
+
+    <!-- BOOKING -->
+
+    <section
+        id="booking"
+        class="tab-content"
+    >
+
+        <h2
+            id="bookingTitle"
+            class="section-title"
+        >
+            예약 양식 만들기
+        </h2>
+
+
+        <p
+            id="bookingSubtext"
+            class="section-subtext"
+        >
+            정말 편하게 문의 주시면 됩니다. 예약 안해도 됨!
+        </p>
+
+
+
+        <form id="bookingForm">
+
+
+            <!-- 1 -->
+
+            <h3
+                id="customerInfoTitle"
+                class="small-title"
+            >
+                1. 예약자 정보
+            </h3>
+
+
+            <div class="form-section">
+
+
+                <div class="form-group">
+
+                    <label id="nameLabel">
+                        이름
+                    </label>
+
+                    <input
+                        id="customerName"
+                        type="text"
+                        placeholder=""
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label id="ageLabel">
+                        나이
+                    </label>
+
+                    <input
+                        id="customerAge"
+                        type="text"
+                        placeholder=""
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label id="genderLabel">
+                        성별
+                    </label>
+
+
+                    <div class="gender-group">
+
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="female"
+                            >
+
+                            <span id="genderFemale">
+                                여성
+                            </span>
+
+                        </label>
+
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="male"
+                            >
+
+                            <span id="genderMale">
+                                남성
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- 2 -->
+
+            <h3
+                id="workInfoTitle"
+                class="small-title"
+            >
+                2. 작업 내용
+            </h3>
+
+
+            <div class="booking-size-card">
+
+                <div class="estimate-label">
+                    SIZE
+                </div>
+
+
+                <div class="size-display">
+
+                    <span id="bookingSizeValue">
+                        5
+                    </span>
+
+                    <span class="unit">
+                        CM
+                    </span>
+
+                </div>
+
+
+                <input
+                    id="bookingSizeSlider"
+                    class="size-slider"
+
+                    type="range"
+
+                    min="1"
+                    max="20"
+                    step="1"
+
+                    value="5"
+
+                    oninput="updateBookingSize()"
+                >
+
+
+                <div class="slider-range">
+
+                    <span>
+                        1 CM
+                    </span>
+
+                    <span>
+                        20 CM
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-section">
+
+
+                <div class="form-group">
+
+                    <label id="colorLabel">
+                        색상
+                    </label>
+
+                    <input
+                        id="tattooColor"
+                        type="text"
+                        placeholder=""
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label id="placementLabel">
+                        작업 희망 부위
+                    </label>
+
+                    <input
+                        id="tattooPlacement"
+                        type="text"
+                        placeholder=""
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- 3 -->
+
+            <h3
+                id="dateTitle"
+                class="small-title"
+            >
+                3. 희망 날짜
+            </h3>
+
+
+            <p
+                id="dateDescription"
+                class="small-description"
+            >
+                시간은 상담하면서 정해봅시다.
+            </p>
+
+
+            <div class="calendar-section">
+
+
+                <div
+                    id="selectedDatesBox"
+                    class="selected-dates"
+                >
+
+                    <strong id="selectedDatesTitle">
+                        선택한 날짜
+                    </strong>
+
+                    <div id="selectedDate1">
+                        1순위:
+                    </div>
+
+                    <div id="selectedDate2">
+                        2순위:
+                    </div>
+
+                    <div id="selectedDate3">
+                        3순위:
+                    </div>
+
+                </div>
+
+
+                <div class="calendar">
+
+
+                    <div class="calendar-header">
+
+
+                        <button
+                            type="button"
+                            class="calendar-arrow"
+                            onclick="changeCalendarMonth(-1)"
+                        >
+                            ←
+                        </button>
+
+
+                        <span id="calendarTitle"></span>
+
+
+                        <button
+                            type="button"
+                            class="calendar-arrow"
+                            onclick="changeCalendarMonth(1)"
+                        >
+                            →
+                        </button>
+
+
+                    </div>
+
+
+                    <div class="calendar-days">
+
+                        <span>S</span>
+                        <span>M</span>
+                        <span>T</span>
+                        <span>W</span>
+                        <span>T</span>
+                        <span>F</span>
+                        <span>S</span>
+
+                    </div>
+
+
+                    <div
+                        id="calendarGrid"
+                        class="calendar-grid"
+                    ></div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- 4 -->
+
+            <h3
+                id="healthTitle"
+                class="small-title"
+            >
+                4. 건강 관련 특이사항
+            </h3>
+
+
+            <div class="form-section">
+
+
+                <div class="form-group">
+
+
+                    <p
+                        id="healthDescription"
+                        class="health-info"
+                    >
+                        알러지, 아토피, 켈로이드성 피부,
+                        면역 질환, 심혈관 질환 등이 있다면 알려주세요.
+                    </p>
+
+
+                    <textarea
+                        id="healthInfo"
+                        placeholder=""
+                    ></textarea>
+
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                id="completeButton"
+                type="submit"
+                class="main-button"
+            >
+                예약 양식 완성하기
+            </button>
+
+
+        </form>
+
+
+
+        <!-- RESULT -->
+
+        <div
+            id="bookingResult"
+            class="booking-result"
+        >
+
+
+            <h3 id="resultTitle">
+                예약 양식이 완성되었습니다.
+            </h3>
+
+
+            <p
+                id="resultWarning"
+                class="result-warning"
+            >
+                원하는 도안을 캡쳐해서 예약 양식과 함께 보내주세요.
+            </p>
+
+
+            <textarea
+                id="bookingResultText"
+                readonly
+            ></textarea>
+
+
+            <button
+                id="copyButton"
+                type="button"
+                class="secondary-button"
+                onclick="copyBooking()"
+            >
+                내용 복사하기
+            </button>
+
+
+            <button
+                id="kakaoButton"
+                type="button"
+                class="kakao-button"
+                onclick="openKakao()"
+            >
+                카카오채널로 문의하기
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<!-- 날짜 파일을 먼저 읽음 -->
+<script src="available_dates.js"></script>
+
+
+<script>
+
+
+let currentLanguage =
+    "ko";
+
+
+const KAKAO_CHANNEL_URL =
+    "https://pf.kakao.com/_xkxiEXX";
+
+
+
+/* HOME */
+
+function goHome() {
+
+    openTab(
+        "welcome",
+        document.getElementById(
+            "tabWelcome"
+        )
+    );
+
+}
+
+
+
+/* TAB */
+
+function openTab(tabId, button) {
+
+
+    document
+        .querySelectorAll(
+            ".tab-content"
+        )
+        .forEach(tab => {
+
+            tab.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(
+            ".tab-button"
+        )
+        .forEach(tabButton => {
+
+            tabButton.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .getElementById(
+            tabId
+        )
+        .classList
+        .add(
+            "active"
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* PRICE */
+
+function getTattooPrice(size) {
+
+
+    if (size <= 3) {
+
+        return 50000;
+
+    }
+
+
+    return size * 15000;
+
+}
+
+
+
+function calculateEstimate() {
+
+
+    const size =
+        parseInt(
+            document.getElementById(
+                "estimateSlider"
+            ).value
+        );
+
+
+    const price =
+        getTattooPrice(
+            size
+        );
+
+
+    document.getElementById(
+        "estimateSizeValue"
+    ).textContent =
+        size;
+
+
+    document.getElementById(
+        "estimatePrice"
+    ).textContent =
+        "₩" +
+        price.toLocaleString(
+            "ko-KR"
+        );
+
+}
+
+
+
+/* BOOKING SIZE */
+
+function updateBookingSize() {
+
+
+    const size =
+        document.getElementById(
+            "bookingSizeSlider"
+        ).value;
+
+
+    document.getElementById(
+        "bookingSizeValue"
+    ).textContent =
+        size;
+
+}
+
+
+
+/* CALENDAR */
+
+let calendarDate =
+    new Date();
+
+
+let selectedDates =
+    [];
+
+
+
+function changeCalendarMonth(amount) {
+
+
+    calendarDate.setMonth(
+
+        calendarDate.getMonth()
+        +
+        amount
+
+    );
+
+
+    renderCalendar();
+
+}
+
+
+
+function renderCalendar() {
+
+
+    const year =
+        calendarDate.getFullYear();
+
+
+    const month =
+        calendarDate.getMonth();
+
+
+
+    document.getElementById(
+        "calendarTitle"
+    ).textContent =
+
+        `${year}.${String(
+            month + 1
+        ).padStart(
+            2,
+            "0"
+        )}`;
+
+
+
+    const grid =
+        document.getElementById(
+            "calendarGrid"
+        );
+
+
+    grid.innerHTML =
+        "";
+
+
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+
+    const lastDay =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        grid.appendChild(
+
+            document.createElement(
+                "div"
+            )
+
+        );
+
+    }
+
+
+
+    for (
+        let day = 1;
+        day <= lastDay;
+        day++
+    ) {
+
+
+        const cell =
+            document.createElement(
+                "div"
+            );
+
+
+        cell.className =
+            "calendar-day";
+
+
+        const span =
+            document.createElement(
+                "span"
+            );
+
+
+        span.textContent =
+            day;
+
+
+        cell.appendChild(
+            span
+        );
+
+
+
+        const dateString =
+
+            `${year}-${String(
+                month + 1
+            ).padStart(
+                2,
+                "0"
+            )}-${String(
+                day
+            ).padStart(
+                2,
+                "0"
+            )}`;
+
+
+
+        if (
+            availableDates.includes(
+                dateString
+            )
+        ) {
+
+
+            cell.classList.add(
+                "available"
+            );
+
+
+            if (
+                selectedDates.includes(
+                    dateString
+                )
+            ) {
+
+                cell.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            cell.onclick =
+                function() {
+
+                    toggleDate(
+                        dateString
+                    );
+
+                };
+
+
+        }
+
+
+        else {
+
+            cell.classList.add(
+                "closed"
+            );
+
+        }
+
+
+        grid.appendChild(
+            cell
+        );
+
+    }
+
+}
+
+
+
+function toggleDate(
+    dateString
+) {
+
+
+    const index =
+        selectedDates.indexOf(
+            dateString
+        );
+
+
+    if (
+        index !== -1
+    ) {
+
+
+        selectedDates.splice(
+            index,
+            1
+        );
+
+
+    }
+
+
+    else {
+
+
+        if (
+            selectedDates.length >= 3
+        ) {
+
+
+            if (
+                currentLanguage === "en"
+            ) {
+
+                alert(
+                    "You can select up to three dates."
+                );
+
+            }
+
+
+            else if (
+                currentLanguage === "ja"
+            ) {
+
+                alert(
+                    "日付は3つまで選択できます。"
+                );
+
+            }
+
+
+            else {
+
+                alert(
+                    "날짜는 최대 3개까지 선택할 수 있습니다."
+                );
+
+            }
+
+
+            return;
+
+        }
+
+
+        selectedDates.push(
+            dateString
+        );
+
+    }
+
+
+    updateSelectedDates();
+
+    renderCalendar();
+
+}
+
+
+
+function updateSelectedDates() {
+
+
+    const labels =
+        translations[
+            currentLanguage
+        ]
+        .booking;
+
+
+    document.getElementById(
+        "selectedDate1"
+    ).textContent =
+
+        labels.rank1
+        +
+        ": "
+        +
+        (
+            selectedDates[0]
+            ||
+            ""
+        );
+
+
+    document.getElementById(
+        "selectedDate2"
+    ).textContent =
+
+        labels.rank2
+        +
+        ": "
+        +
+        (
+            selectedDates[1]
+            ||
+            ""
+        );
+
+
+    document.getElementById(
+        "selectedDate3"
+    ).textContent =
+
+        labels.rank3
+        +
+        ": "
+        +
+        (
+            selectedDates[2]
+            ||
+            ""
+        );
+
+}
+
+
+
+/* BOOKING RESULT */
+
+document.getElementById(
+    "bookingForm"
+).addEventListener(
+
+    "submit",
+
+    function(event) {
+
+
+        event.preventDefault();
+
+
+
+        const name =
+            document.getElementById(
+                "customerName"
+            ).value;
+
+
+        const age =
+            document.getElementById(
+                "customerAge"
+            ).value;
+
+
+        const genderInput =
+            document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+
+        let gender =
+            "";
+
+
+        if (
+            genderInput
+        ) {
+
+
+            gender =
+                translations[
+                    currentLanguage
+                ]
+                .gender[
+                    genderInput.value
+                ];
+
+        }
+
+
+
+        const size =
+            document.getElementById(
+                "bookingSizeSlider"
+            ).value;
+
+
+        const color =
+            document.getElementById(
+                "tattooColor"
+            ).value;
+
+
+        const placement =
+            document.getElementById(
+                "tattooPlacement"
+            ).value;
+
+
+        const health =
+            document.getElementById(
+                "healthInfo"
+            ).value;
+
+
+
+        let result;
+
+
+
+        if (
+            currentLanguage === "en"
+        ) {
+
+
+            result =
+
+`BOOKING FORM
+
+1. Customer Information
+• Name: ${name}
+• Age: ${age}
+• Gender: ${gender}
+
+2. Tattoo Details
+• Size: ${size}cm
+• Color: ${color}
+• Placement: ${placement}
+
+3. Preferred Dates
+• 1st choice: ${selectedDates[0] || ""}
+• 2nd choice: ${selectedDates[1] || ""}
+• 3rd choice: ${selectedDates[2] || ""}
+
+4. Health Information
+${health}`;
+
+        }
+
+
+
+        else if (
+            currentLanguage === "ja"
+        ) {
+
+
+            result =
+
+`予約フォーム
+
+1. 予約者情報
+• お名前: ${name}
+• 年齢: ${age}
+• 性別: ${gender}
+
+2. 施術内容
+• サイズ: ${size}cm
+• カラー: ${color}
+• 希望部位: ${placement}
+
+3. 希望日
+• 第1希望: ${selectedDates[0] || ""}
+• 第2希望: ${selectedDates[1] || ""}
+• 第3希望: ${selectedDates[2] || ""}
+
+4. 健康に関する特記事項
+${health}`;
+
+        }
+
+
+
+        else {
+
+
+            result =
+
+`예약 양식
+
+1. 예약자 정보
+• 이름: ${name}
+• 나이: ${age}
+• 성별: ${gender}
+
+2. 작업 내용
+• 크기: ${size}cm
+• 색상: ${color}
+• 작업 희망 부위: ${placement}
+
+3. 희망 날짜
+• 1순위: ${selectedDates[0] || ""}
+• 2순위: ${selectedDates[1] || ""}
+• 3순위: ${selectedDates[2] || ""}
+
+4. 건강 관련 특이사항
+${health}`;
+
+        }
+
+
+
+        document.getElementById(
+            "bookingResultText"
+        ).value =
+            result;
+
+
+
+        const resultArea =
+            document.getElementById(
+                "bookingResult"
+            );
+
+
+        resultArea.style.display =
+            "block";
+
+
+        resultArea.scrollIntoView({
+
+            behavior:
+                "smooth"
+
+        });
+
+
+    }
+
+);
+
+
+
+/* COPY */
+
+function copyBooking() {
+
+    const textarea =
+        document.getElementById(
+            "bookingResultText"
+        );
+
+
+    if (navigator.clipboard) {
+
+        navigator.clipboard
+            .writeText(
+                textarea.value
+            );
+
+    }
+
+    else {
+
+        textarea.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+    }
+
+}
+
+
+
+
+
+/* KAKAO */
+
+function openKakao() {
+
+
+    window.open(
+
+        KAKAO_CHANNEL_URL,
+
+        "_blank",
+
+        "noopener,noreferrer"
+
+    );
+
+}
+
+
+
+/* TRANSLATIONS */
+
+const translations = {
+
+
+    ko: {
+
+
+        tabs: {
+
+            home:
+                "@gimgingi",
+
+            notice:
+                "필독 사항",
+
+            estimate:
+                "타투 가격",
+
+            booking:
+                "예약 양식"
+
+        },
+
+
+        welcome: {
+
+            t1:
+                "환영합니다. 수집가님!",
+
+            t2:
+                "이곳에는 저마다의 이야기와 의미를 품고 있는 표본들이 있습니다.<br>부디 천천히 둘러보세요.",
+
+            t3:
+                "마음에 드는 표본을 발견하신다면,<br>그 표본의 새로운 주인이 되어주시길 바라요.",
+
+            t4:
+                "다만 한 가지.<br>수집가님이 선택한다고 생각할 수도 있지만,<br>가끔은 표본이 먼저 수집가를 선택하기도 해요.",
+
+            t5:
+                "그럼 즐거운 수집 되시길."
+
+        },
+
+
+        notice: {
+
+            title:
+                "필독 사항",
+
+            titles: [
+                "예약금",
+                "예약 변경",
+                "지각",
+                "미성년자",
+                "작업 시간",
+                "디자인"
+            ],
+
+
+            texts: [
+
+                "예약금은 50,000원 입니다.<br>예약금은 최종 시술 금액에 포함됩니다.<br>예약 취소나 노쇼(No-show) 시 예약금은 환불되지 않습니다.",
+
+                "일정 변경은 예약일 2일 전까지 가능합니다.<br>재변경 시 추가 예약금이 발생할 수 있습니다.",
+
+                "30분 이상 지각 시 작업이 취소될 수 있으며,<br>예약금은 반환되지 않습니다.",
+
+                "미성년자 작업은 진행하지 않습니다.<br>방문 시 신분증 확인을 요청드릴 수 있습니다.",
+
+                "핸드포크 특성상 작업 시간이 깁니다. 이후 일정을 비워두시거나 여유롭게 잡아주세요.",
+
+                "다른 타투이스트의 작업을 그대로 복제하지 않습니다.<br>도안의 저작권은 타투이스트에게 있으며, 타투 외 작업에 사용될 수 있습니다."
+
+            ]
+
+        },
+
+
+        estimate: {
+
+            title:
+                "타투 가격 견적",
+
+            note:
+                "1~3cm 기본 50,000원 / 4cm부터 1cm당 15,000원",
+
+            warning:
+                "실제 가격은 디자인의 디테일, 컬러, 작업 부위 등에 따라 달라질 수 있습니다. 정확한 금액은 예약 상담 후 안내드립니다."
+
+        },
+
+
+        booking: {
+
+            title:
+                "예약 양식 만들기",
+
+            subtext:
+                "정말 편하게 문의 주시면 됩니다. 예약 안해도 됨!",
+
+            customer:
+                "1. 예약자 정보",
+
+            name:
+                "이름",
+
+            age:
+                "나이",
+
+            gender:
+                "성별",
+
+            female:
+                "여성",
+
+            male:
+                "남성",
+
+            work:
+                "2. 작업 내용",
+
+            color:
+                "색상",
+
+            placement:
+                "작업 희망 부위",
+
+            date:
+                "3. 희망 날짜",
+
+            dateDescription:
+                "시간은 상담하면서 정해봅시다.",
+
+            selectedDates:
+                "선택한 날짜",
+
+            rank1:
+                "1순위",
+
+            rank2:
+                "2순위",
+
+            rank3:
+                "3순위",
+
+            health:
+                "4. 건강 관련 특이사항",
+
+            healthDescription:
+                "알러지, 아토피, 켈로이드성 피부, 면역 질환, 심혈관 질환 등이 있다면 알려주세요.",
+
+            complete:
+                "예약 양식 완성하기",
+
+            resultTitle:
+                "예약 양식이 완성되었습니다.",
+
+            resultWarning:
+                "원하는 도안을 캡쳐해서 예약 양식과 함께 보내주세요.",
+
+            copy:
+                "내용 복사하기",
+
+            kakao:
+                "카카오채널로 문의하기"
+
+        },
+
+
+        gender: {
+
+            female:
+                "여성",
+
+            male:
+                "남성"
+
+        }
+
+    },
+
+
+
+    en: {
+
+
+        tabs: {
+
+            home:
+                "@gimgingi",
+
+            notice:
+                "IMPORTANT",
+
+            estimate:
+                "PRICE",
+
+            booking:
+                "BOOKING"
+
+        },
+
+
+        welcome: {
+
+            t1:
+                "Welcome, Collector!",
+
+            t2:
+                "Here, you will find designs with their own stories and meanings.<br>Please take your time and look around.",
+
+            t3:
+                "If you find a design that catches your eye,<br>we hope it becomes something meaningful to you.",
+
+            t4:
+                "Sometimes the right design finds the right person first.",
+
+            t5:
+                "Enjoy looking around."
+
+        },
+
+
+        notice: {
+
+            title:
+                "Important Information",
+
+            titles: [
+                "Deposit",
+                "Rescheduling",
+                "Late Arrival",
+                "Minors",
+                "Session Time",
+                "Design"
+            ],
+
+
+            texts: [
+
+                "The deposit is KRW 50,000.<br>The deposit is included in the final tattoo price.<br>The deposit is non-refundable for cancellations or no-shows.",
+
+                "Schedule changes are allowed up to 2 days before your appointment.<br>An additional deposit may be required for another rescheduling.",
+
+                "Arriving more than 30 minutes late may result in cancellation.<br>The deposit will not be refunded.",
+
+                "Tattoo services are not available to minors.<br>A valid ID may be requested before the session.",
+
+                "Handpoke sessions can take a long time. Please leave enough time after your appointment.",
+
+                "Designs by other tattoo artists will not be copied.<br>Copyright of the designs belongs to the tattoo artist and they may be used for purposes other than tattooing."
+
+            ]
+
+        },
+
+
+        estimate: {
+
+            title:
+                "Tattoo Price Estimate",
+
+            note:
+                "1–3cm: KRW 50,000 minimum / From 4cm: KRW 15,000 per cm",
+
+            warning:
+                "This is an estimated price. The final price may vary depending on design detail, color, and placement. The exact price will be provided after consultation."
+
+        },
+
+
+        booking: {
+
+            title:
+                "Create Booking Form",
+
+            subtext:
+                "Feel free to ask anything. You don't have to book!",
+
+            customer:
+                "1. Customer Information",
+
+            name:
+                "Name",
+
+            age:
+                "Age",
+
+            gender:
+                "Gender",
+
+            female:
+                "Female",
+
+            male:
+                "Male",
+
+            work:
+                "2. Tattoo Details",
+
+            color:
+                "Color",
+
+            placement:
+                "Preferred Placement",
+
+            date:
+                "3. Preferred Dates",
+
+            dateDescription:
+                "We can decide the time together during consultation.",
+
+            selectedDates:
+                "Selected Dates",
+
+            rank1:
+                "1st choice",
+
+            rank2:
+                "2nd choice",
+
+            rank3:
+                "3rd choice",
+
+            health:
+                "4. Health Information",
+
+            healthDescription:
+                "Please let me know if you have allergies, atopic dermatitis, keloid-prone skin, immune disorders, cardiovascular conditions, or other relevant health conditions.",
+
+            complete:
+                "COMPLETE BOOKING FORM",
+
+            resultTitle:
+                "Your booking form is ready.",
+
+            resultWarning:
+                "Please send a screenshot of your preferred design together with the booking form.",
+
+            copy:
+                "COPY CONTENT",
+
+            kakao:
+                "CONTACT VIA KAKAO"
+
+        },
+
+
+        gender: {
+
+            female:
+                "Female",
+
+            male:
+                "Male"
+
+        }
+
+    },
+
+
+
+    ja: {
+
+
+        tabs: {
+
+            home:
+                "@gimgingi",
+
+            notice:
+                "必読事項",
+
+            estimate:
+                "料金",
+
+            booking:
+                "予約フォーム"
+
+        },
+
+
+        welcome: {
+
+            t1:
+                "ようこそ、コレクター様！",
+
+            t2:
+                "ここには、それぞれの物語や意味を持つデザインがあります。<br>どうぞゆっくりご覧ください。",
+
+            t3:
+                "気になるデザインが見つかりましたら、<br>ぜひお気軽にお問い合わせください。",
+
+            t4:
+                "時には、デザインのほうから先にあなたを見つけることもあります。",
+
+            t5:
+                "どうぞごゆっくりお楽しみください。"
+
+        },
+
+
+        notice: {
+
+            title:
+                "必読事項",
+
+            titles: [
+                "予約金",
+                "予約変更",
+                "遅刻",
+                "未成年者",
+                "施術時間",
+                "デザイン"
+            ],
+
+
+            texts: [
+
+                "予約金は50,000ウォンです。<br>予約金は最終施術料金に含まれます。<br>予約キャンセルまたは無断キャンセルの場合、予約金は返金されません。",
+
+                "日程変更は予約日の2日前まで可能です。<br>再度変更される場合は追加の予約金が必要になる場合があります。",
+
+                "30分以上遅刻された場合、施術をキャンセルする場合があります。<br>予約金は返金されません。",
+
+                "未成年者への施術は行っておりません。<br>施術前に身分証明書を確認する場合があります。",
+
+                "ハンドポークは施術時間が長くなる場合があります。施術後の予定には十分な余裕を持ってください。",
+
+                "他のタトゥーアーティストのデザインをそのまま複製することはありません。<br>デザインの著作権はタトゥーアーティストに帰属し、タトゥー以外の用途に使用される場合があります。"
+
+            ]
+
+        },
+
+
+        estimate: {
+
+            title:
+                "タトゥー料金見積もり",
+
+            note:
+                "1〜3cm：基本料金50,000ウォン / 4cm以上：1cmあたり15,000ウォン",
+
+            warning:
+                "表示価格は目安です。デザインの細かさ、カラー、施術部位などによって料金が変わる場合があります。正確な料金はカウンセリング後にご案内いたします。"
+
+        },
+
+
+        booking: {
+
+            title:
+                "予約フォーム作成",
+
+            subtext:
+                "気軽にお問い合わせください。予約しなくても大丈夫です！",
+
+            customer:
+                "1. 予約者情報",
+
+            name:
+                "お名前",
+
+            age:
+                "年齢",
+
+            gender:
+                "性別",
+
+            female:
+                "女性",
+
+            male:
+                "男性",
+
+            work:
+                "2. 施術内容",
+
+            color:
+                "カラー",
+
+            placement:
+                "希望部位",
+
+            date:
+                "3. 希望日",
+
+            dateDescription:
+                "時間は相談しながら決めましょう。",
+
+            selectedDates:
+                "選択した日付",
+
+            rank1:
+                "第1希望",
+
+            rank2:
+                "第2希望",
+
+            rank3:
+                "第3希望",
+
+            health:
+                "4. 健康に関する特記事項",
+
+            healthDescription:
+                "アレルギー、アトピー、ケロイド体質、免疫疾患、心血管疾患などがある場合はお知らせください。",
+
+            complete:
+                "予約フォームを完成する",
+
+            resultTitle:
+                "予約フォームが完成しました。",
+
+            resultWarning:
+                "ご希望のデザインをスクリーンショットし、予約フォームと一緒にお送りください。",
+
+            copy:
+                "内容をコピー",
+
+            kakao:
+                "カカオチャンネルで問い合わせ"
+
+        },
+
+
+        gender: {
+
+            female:
+                "女性",
+
+            male:
+                "男性"
+
+        }
+
+    }
+
+};
+
+
+
+/* LANGUAGE */
+
+function changeLanguage(lang) {
+
+
+    currentLanguage =
+        lang;
+
+
+    const t =
+        translations[
+            lang
+        ];
+
+
+
+    document.getElementById(
+        "tabWelcome"
+    ).innerHTML =
+        t.tabs.home;
+
+
+    document.getElementById(
+        "tabNotice"
+    ).innerHTML =
+        t.tabs.notice;
+
+
+    document.getElementById(
+        "tabEstimate"
+    ).innerHTML =
+        t.tabs.estimate;
+
+
+    document.getElementById(
+        "tabBooking"
+    ).innerHTML =
+        t.tabs.booking;
+
+
+
+    document.getElementById("t1").innerHTML =
+        t.welcome.t1;
+
+    document.getElementById("t2").innerHTML =
+        t.welcome.t2;
+
+    document.getElementById("t3").innerHTML =
+        t.welcome.t3;
+
+    document.getElementById("t4").innerHTML =
+        t.welcome.t4;
+
+    document.getElementById("t5").innerHTML =
+        t.welcome.t5;
+
+
+
+    document.getElementById(
+        "noticeTitle"
+    ).innerHTML =
+        t.notice.title;
+
+
+    for (
+        let i = 1;
+        i <= 6;
+        i++
+    ) {
+
+
+        document.getElementById(
+            "notice" +
+            i +
+            "Title"
+        ).innerHTML =
+            t.notice.titles[
+                i - 1
+            ];
+
+
+        document.getElementById(
+            "notice" +
+            i +
+            "Text"
+        ).innerHTML =
+            t.notice.texts[
+                i - 1
+            ];
+
+    }
+
+
+
+    document.getElementById(
+        "estimateTitle"
+    ).innerHTML =
+        t.estimate.title;
+
+
+    document.getElementById(
+        "estimatePriceNote"
+    ).innerHTML =
+        t.estimate.note;
+
+
+    document.getElementById(
+        "priceWarning"
+    ).innerHTML =
+        t.estimate.warning;
+
+
+
+    const b =
+        t.booking;
+
+
+    document.getElementById(
+        "bookingTitle"
+    ).innerHTML =
+        b.title;
+
+
+    document.getElementById(
+        "bookingSubtext"
+    ).innerHTML =
+        b.subtext;
+
+
+    document.getElementById(
+        "customerInfoTitle"
+    ).innerHTML =
+        b.customer;
+
+
+    document.getElementById(
+        "nameLabel"
+    ).innerHTML =
+        b.name;
+
+
+    document.getElementById(
+        "ageLabel"
+    ).innerHTML =
+        b.age;
+
+
+    document.getElementById(
+        "genderLabel"
+    ).innerHTML =
+        b.gender;
+
+
+    document.getElementById(
+        "genderFemale"
+    ).innerHTML =
+        b.female;
+
+
+    document.getElementById(
+        "genderMale"
+    ).innerHTML =
+        b.male;
+
+
+    document.getElementById(
+        "workInfoTitle"
+    ).innerHTML =
+        b.work;
+
+
+    document.getElementById(
+        "colorLabel"
+    ).innerHTML =
+        b.color;
+
+
+    document.getElementById(
+        "placementLabel"
+    ).innerHTML =
+        b.placement;
+
+
+    document.getElementById(
+        "dateTitle"
+    ).innerHTML =
+        b.date;
+
+
+    document.getElementById(
+        "dateDescription"
+    ).innerHTML =
+        b.dateDescription;
+
+
+    document.getElementById(
+        "selectedDatesTitle"
+    ).innerHTML =
+        b.selectedDates;
+
+
+    document.getElementById(
+        "healthTitle"
+    ).innerHTML =
+        b.health;
+
+
+    document.getElementById(
+        "healthDescription"
+    ).innerHTML =
+        b.healthDescription;
+
+
+    document.getElementById(
+        "completeButton"
+    ).innerHTML =
+        b.complete;
+
+
+    document.getElementById(
+        "resultTitle"
+    ).innerHTML =
+        b.resultTitle;
+
+
+    document.getElementById(
+        "resultWarning"
+    ).innerHTML =
+        b.resultWarning;
+
+
+    document.getElementById(
+        "copyButton"
+    ).innerHTML =
+        b.copy;
+
+
+    document.getElementById(
+        "kakaoButton"
+    ).innerHTML =
+        b.kakao;
+
+
+    updateSelectedDates();
+
+}
+
+
+
+/* INITIAL */
+
+calculateEstimate();
+updateBookingSize();
+renderCalendar();
+updateSelectedDates();
+
+
+</script>
+
+
+</body>
+
+</html>
