@@ -178,7 +178,7 @@
             margin:
                 15px
                 auto
-                30px;
+                0px;
         }
 
         .text-content {
@@ -196,6 +196,7 @@
         }
 
         #t1 {
+            margin-top: 0;
             margin-bottom: 30px;
 
             font-size: 26px;
@@ -1768,7 +1769,7 @@ function goHome() {
 
 /* TAB */
 
-function openTab(tabId, button) {
+function openTab(tabId, button, updateHash = true) {
 
 
     document
@@ -1810,6 +1811,17 @@ function openTab(tabId, button) {
     button.classList.add(
         "active"
     );
+
+
+    if (updateHash) {
+
+        history.replaceState(
+            null,
+            "",
+            "#" + tabId
+        );
+
+    }
 
 
     window.scrollTo({
@@ -3413,6 +3425,52 @@ calculateEstimate();
 updateBookingSize();
 renderCalendar();
 updateSelectedDates();
+
+
+/* 새로고침해도 현재 탭 유지 */
+
+(function restoreTabFromHash() {
+
+    const tabId =
+        window.location.hash
+            .replace("#", "");
+
+
+    const validTabs = [
+        "welcome",
+        "notice",
+        "estimate",
+        "booking"
+    ];
+
+
+    if (
+        validTabs.includes(
+            tabId
+        )
+    ) {
+
+        const buttonMap = {
+            welcome: "tabWelcome",
+            notice: "tabNotice",
+            estimate: "tabEstimate",
+            booking: "tabBooking"
+        };
+
+
+        openTab(
+            tabId,
+            document.getElementById(
+                buttonMap[
+                    tabId
+                ]
+            ),
+            false
+        );
+
+    }
+
+})();
 
 
 </script>
