@@ -788,6 +788,94 @@
 
         }
 
+    
+        /* ===== 요청 반영: 글자 크기 ===== */
+        .tab-button { font-size: 13.5px !important; }
+
+        /* 볼드 제목 제외 일반 글씨 1.5배 */
+        .text-content,
+        .notice-section p,
+        .section-subtext,
+        .small-description,
+        .price-note,
+        .price-warning,
+        .health-info,
+        .selected-dates,
+        .form-group input,
+        .form-group textarea,
+        #bookingResultText {
+            font-size: 1.5em;
+        }
+
+        html[lang="ja"] .text-content,
+        html[lang="ja"] .notice-section p,
+        html[lang="ja"] .section-subtext,
+        html[lang="ja"] .small-description,
+        html[lang="ja"] .price-note,
+        html[lang="ja"] .price-warning,
+        html[lang="ja"] .health-info {
+            word-break: normal;
+            overflow-wrap: anywhere;
+            line-break: strict;
+        }
+
+    
+        /* ===== 추가 예약 안내 ===== */
+        .booking-extra-note {
+            margin: -18px 0 30px;
+            font-size: 1.5em;
+            line-height: 1.7;
+            font-weight: 300;
+            opacity: .65;
+            word-break: keep-all;
+        }
+
+        .result-extra-warning {
+            margin: -8px 0 16px;
+            color: #c70000;
+            font-size: 1.5em;
+            line-height: 1.7;
+            font-weight: 400;
+            word-break: keep-all;
+        }
+
+        /* ===== 항상 보이는 카카오톡 채널 버튼 ===== */
+        .floating-kakao {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 9999;
+
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            display: block;
+            box-shadow: 0 4px 16px rgba(0,0,0,.18);
+
+            transition: transform .15s ease;
+        }
+
+        .floating-kakao:active {
+            transform: scale(.94);
+        }
+
+        .floating-kakao img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        html[lang="ja"] .booking-extra-note,
+        html[lang="ja"] .result-extra-warning {
+            word-break: normal;
+            overflow-wrap: anywhere;
+            line-break: strict;
+        }
+
     </style>
 
 </head>
@@ -1130,7 +1218,7 @@
                     id="estimatePriceNote"
                     class="price-note"
                 >
-                    1~3cm 기본 50,000원 / 4cm부터 1cm당 15,000원
+                    1~3cm 기본 50,000원 / 4cm부터 1cm당 15,000원<br>제작 도안은 2만원 추가됩니다.<br>20cm 이상은 문의 주세요.
                 </p>
 
             </div>
@@ -1170,6 +1258,13 @@
             class="section-subtext"
         >
             정말 편하게 문의 주시면 됩니다. 예약 안해도 됨!
+        </p>
+
+        <p
+            id="bookingExtraNote"
+            class="booking-extra-note"
+        >
+            도안 제작을 원하실 경우는 스케치나 상세한 설명을 해주세요.
         </p>
 
 
@@ -1505,6 +1600,30 @@
             </div>
 
 
+            <!-- 5 -->
+
+            <h3
+                id="otherInquiryTitle"
+                class="small-title"
+            >
+                5. 그 외 문의 사항
+            </h3>
+
+
+            <div class="form-section">
+
+                <div class="form-group">
+
+                    <textarea
+                        id="otherInquiry"
+                        placeholder=""
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
             <button
                 id="completeButton"
                 type="submit"
@@ -1538,6 +1657,13 @@
                 원하는 도안을 캡쳐해서 예약 양식과 함께 보내주세요.
             </p>
 
+            <p
+                id="resultExtraWarning"
+                class="result-extra-warning"
+            >
+                제작 도안을 위한 스케치나 레퍼런스 이미지를 보내주세요.
+            </p>
+
 
             <textarea
                 id="bookingResultText"
@@ -1561,7 +1687,7 @@
                 class="kakao-button"
                 onclick="openKakao()"
             >
-                카카오채널로 문의하기
+                카카오톡으로 붙여넣기
             </button>
 
 
@@ -1587,7 +1713,7 @@ let currentLanguage =
 
 
 const KAKAO_CHANNEL_URL =
-    "https://pf.kakao.com/_xkxiEXX";
+    "https://pf.kakao.com/_xkxiEXX/chat";
 
 
 
@@ -2160,6 +2286,12 @@ document.getElementById(
             ).value;
 
 
+        const otherInquiry =
+            document.getElementById(
+                "otherInquiry"
+            ).value;
+
+
 
         let result;
 
@@ -2190,7 +2322,10 @@ document.getElementById(
 • 3rd choice: ${selectedDates[2] || ""}
 
 4. Health Information
-${health}`;
+${health}
+
+5. Other Questions
+${otherInquiry}`;
 
         }
 
@@ -2221,7 +2356,10 @@ ${health}`;
 • 第3希望: ${selectedDates[2] || ""}
 
 4. 健康に関する特記事項
-${health}`;
+${health}
+
+5. その他のお問い合わせ
+${otherInquiry}`;
 
         }
 
@@ -2250,7 +2388,10 @@ ${health}`;
 • 3순위: ${selectedDates[2] || ""}
 
 4. 건강 관련 특이사항
-${health}`;
+${health}
+
+5. 그 외 문의 사항
+${otherInquiry}`;
 
         }
 
@@ -2326,16 +2467,65 @@ function copyBooking() {
 
 function openKakao() {
 
+    const bookingText =
+        document.getElementById(
+            "bookingResultText"
+        ).value;
 
-    window.open(
 
-        KAKAO_CHANNEL_URL,
+    const openChat = function() {
 
-        "_blank",
+        window.open(
+            KAKAO_CHANNEL_URL,
+            "_blank",
+            "noopener,noreferrer"
+        );
 
-        "noopener,noreferrer"
+    };
 
-    );
+
+    if (
+        bookingText
+        &&
+        navigator.clipboard
+    ) {
+
+        navigator.clipboard
+            .writeText(
+                bookingText
+            )
+            .finally(
+                openChat
+            );
+
+    }
+
+    else if (
+        bookingText
+    ) {
+
+        const textarea =
+            document.getElementById(
+                "bookingResultText"
+            );
+
+
+        textarea.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+
+        openChat();
+
+    }
+
+    else {
+
+        openChat();
+
+    }
 
 }
 
@@ -2426,7 +2616,7 @@ const translations = {
                 "타투 가격 견적",
 
             note:
-                "1~3cm 기본 50,000원 / 4cm부터 1cm당 15,000원",
+                "1~3cm 기본 50,000원 / 4cm부터 1cm당 15,000원<br>제작 도안은 2만원 추가됩니다.<br>20cm 이상은 문의 주세요.",
 
             warning:
                 "실제 가격은 디자인의 디테일, 컬러, 작업 부위 등에 따라 달라질 수 있습니다. 정확한 금액은 예약 상담 후 안내드립니다."
@@ -2441,6 +2631,9 @@ const translations = {
 
             subtext:
                 "정말 편하게 문의 주시면 됩니다. 예약 안해도 됨!",
+
+            extraNote:
+                "도안 제작을 원하실 경우는 스케치나 상세한 설명을 해주세요.",
 
             customer:
                 "1. 예약자 정보",
@@ -2493,6 +2686,9 @@ const translations = {
             healthDescription:
                 "알러지, 아토피, 켈로이드성 피부, 면역 질환, 심혈관 질환 등이 있다면 알려주세요.",
 
+            otherInquiry:
+                "5. 그 외 문의 사항",
+
             complete:
                 "예약 양식 완성하기",
 
@@ -2502,11 +2698,14 @@ const translations = {
             resultWarning:
                 "원하는 도안을 캡쳐해서 예약 양식과 함께 보내주세요.",
 
+            resultExtraWarning:
+                "제작 도안을 위한 스케치나 레퍼런스 이미지를 보내주세요.",
+
             copy:
                 "내용 복사하기",
 
             kakao:
-                "카카오채널로 문의하기"
+                "카카오톡으로 붙여넣기"
 
         },
 
@@ -2605,7 +2804,7 @@ const translations = {
                 "Tattoo Price Estimate",
 
             note:
-                "1–3cm: KRW 50,000 minimum / From 4cm: KRW 15,000 per cm",
+                "1–3cm: KRW 50,000 minimum / From 4cm: KRW 15,000 per cm<br>Custom designs: +KRW 20,000.<br>Please contact me for sizes over 20cm.",
 
             warning:
                 "This is an estimated price. The final price may vary depending on design detail, color, and placement. The exact price will be provided after consultation."
@@ -2620,6 +2819,9 @@ const translations = {
 
             subtext:
                 "Feel free to ask anything. You don't have to book!",
+
+            extraNote:
+                "If you would like a custom design, please send a sketch or detailed description.",
 
             customer:
                 "1. Customer Information",
@@ -2672,6 +2874,9 @@ const translations = {
             healthDescription:
                 "Please let me know if you have allergies, atopic dermatitis, keloid-prone skin, immune disorders, cardiovascular conditions, or other relevant health conditions.",
 
+            otherInquiry:
+                "5. Other Questions",
+
             complete:
                 "COMPLETE BOOKING FORM",
 
@@ -2681,11 +2886,14 @@ const translations = {
             resultWarning:
                 "Please send a screenshot of your preferred design together with the booking form.",
 
+            resultExtraWarning:
+                "Please send a sketch or reference image for a custom design.",
+
             copy:
                 "COPY CONTENT",
 
             kakao:
-                "CONTACT VIA KAKAO"
+                "COPY & OPEN KAKAO"
 
         },
 
@@ -2784,7 +2992,7 @@ const translations = {
                 "タトゥー料金見積もり",
 
             note:
-                "1〜3cm：基本料金50,000ウォン / 4cm以上：1cmあたり15,000ウォン",
+                "1〜3cm：基本料金50,000ウォン / 4cm以上：1cmあたり15,000ウォン<br>オーダーデザインは20,000ウォン追加となります。<br>20cm以上はお問い合わせください。",
 
             warning:
                 "表示価格は目安です。デザインの細かさ、カラー、施術部位などによって料金が変わる場合があります。正確な料金はカウンセリング後にご案内いたします。"
@@ -2799,6 +3007,9 @@ const translations = {
 
             subtext:
                 "気軽にお問い合わせください。予約しなくても大丈夫です！",
+
+            extraNote:
+                "オーダーデザインをご希望の場合は、スケッチまたは詳しい説明をお送りください。",
 
             customer:
                 "1. 予約者情報",
@@ -2851,6 +3062,9 @@ const translations = {
             healthDescription:
                 "アレルギー、アトピー、ケロイド体質、免疫疾患、心血管疾患などがある場合はお知らせください。",
 
+            otherInquiry:
+                "5. その他のお問い合わせ",
+
             complete:
                 "予約フォームを完成する",
 
@@ -2860,11 +3074,14 @@ const translations = {
             resultWarning:
                 "ご希望のデザインをスクリーンショットし、予約フォームと一緒にお送りください。",
 
+            resultExtraWarning:
+                "オーダーデザイン用のスケッチや参考画像をお送りください。",
+
             copy:
                 "内容をコピー",
 
             kakao:
-                "カカオチャンネルで問い合わせ"
+                "コピーしてカカオを開く"
 
         },
 
@@ -3019,6 +3236,12 @@ function changeLanguage(lang) {
 
 
     document.getElementById(
+        "bookingExtraNote"
+    ).innerHTML =
+        b.extraNote;
+
+
+    document.getElementById(
         "customerInfoTitle"
     ).innerHTML =
         b.customer;
@@ -3103,6 +3326,12 @@ function changeLanguage(lang) {
 
 
     document.getElementById(
+        "otherInquiryTitle"
+    ).innerHTML =
+        b.otherInquiry;
+
+
+    document.getElementById(
         "completeButton"
     ).innerHTML =
         b.complete;
@@ -3118,6 +3347,12 @@ function changeLanguage(lang) {
         "resultWarning"
     ).innerHTML =
         b.resultWarning;
+
+
+    document.getElementById(
+        "resultExtraWarning"
+    ).innerHTML =
+        b.resultExtraWarning;
 
 
     document.getElementById(
@@ -3148,6 +3383,20 @@ updateSelectedDates();
 
 </script>
 
+
+
+<a
+    class="floating-kakao"
+    href="https://pf.kakao.com/_xkxiEXX/chat"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="KakaoTalk Channel"
+>
+    <img
+        src="kakaoCh_logo.png"
+        alt="KakaoTalk Channel"
+    >
+</a>
 
 </body>
 
