@@ -787,43 +787,10 @@
             }
 
         }
-
-    
-        /* ===== 요청 반영: 글자 크기 ===== */
-        .tab-button { font-size: 13.5px !important; }
-
-        /* 볼드 제목 제외 일반 글씨 1.5배 */
-        .text-content,
-        .notice-section p,
-        .section-subtext,
-        .small-description,
-        .price-note,
-        .price-warning,
-        .health-info,
-        .selected-dates,
-        .form-group input,
-        .form-group textarea,
-        #bookingResultText {
-            font-size: 1.5em;
-        }
-
-        html[lang="ja"] .text-content,
-        html[lang="ja"] .notice-section p,
-        html[lang="ja"] .section-subtext,
-        html[lang="ja"] .small-description,
-        html[lang="ja"] .price-note,
-        html[lang="ja"] .price-warning,
-        html[lang="ja"] .health-info {
-            word-break: normal;
-            overflow-wrap: anywhere;
-            line-break: strict;
-        }
-
-    
         /* ===== 추가 예약 안내 ===== */
         .booking-extra-note {
             margin: -18px 0 30px;
-            font-size: 1.5em;
+            font-size: 12px;
             line-height: 1.7;
             font-weight: 300;
             opacity: .65;
@@ -833,7 +800,7 @@
         .result-extra-warning {
             margin: -8px 0 16px;
             color: #c70000;
-            font-size: 1.5em;
+            font-size: 12px;
             line-height: 1.7;
             font-weight: 400;
             word-break: keep-all;
@@ -846,10 +813,10 @@
             bottom: 18px;
             z-index: 9999;
 
-            width: 60px;
-            height: 60px;
+            width: 72px;
+            height: auto;
 
-            border-radius: 50%;
+            border-radius: 12px;
             overflow: hidden;
 
             display: block;
@@ -865,8 +832,8 @@
         .floating-kakao img {
             display: block;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
         }
 
         html[lang="ja"] .booking-extra-note,
@@ -874,6 +841,88 @@
             word-break: normal;
             overflow-wrap: anywhere;
             line-break: strict;
+        }
+
+    
+        /* =========================================
+           TYPOGRAPHY — original size × 1.2
+           Bold headings are scaled proportionally too.
+        ========================================= */
+
+        .tab-button {
+            font-size: 10.8px !important;
+        }
+
+        .text-content {
+            font-size: 15.6px;
+        }
+
+        #t1,
+        .section-title {
+            font-size: 24px;
+        }
+
+        .notice-section h3,
+        .small-title {
+            font-size: 15.6px;
+        }
+
+        .notice-section p {
+            font-size: 13.2px;
+        }
+
+        .section-subtext {
+            font-size: 12px;
+        }
+
+        .small-description,
+        .health-info {
+            font-size: 12px;
+        }
+
+        .estimate-label {
+            font-size: 12px;
+        }
+
+        .estimate-size {
+            font-size: 24px;
+        }
+
+        .estimate-price {
+            font-size: 33.6px;
+        }
+
+        .price-note,
+        .price-warning,
+        .booking-extra-note,
+        .result-warning,
+        .result-extra-warning {
+            font-size: 12px;
+        }
+
+        .form-group label {
+            font-size: 13.2px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            font-size: 15.6px;
+        }
+
+        #bookingResultText {
+            font-size: 13.2px;
+        }
+
+        .main-button,
+        .secondary-button,
+        .kakao-button {
+            font-size: 13.2px;
+        }
+
+        @media(max-width: 380px) {
+            .tab-button {
+                font-size: 9.6px !important;
+            }
         }
 
     </style>
